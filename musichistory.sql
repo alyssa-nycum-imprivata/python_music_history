@@ -11,26 +11,23 @@ INSERT INTO Album VALUES(23, "You Are Okay", "03/29/2019", 2673, "Self-Released"
 
 --#4 Using the INSERT statement, add some songs that are on that album to the Song table.
 SELECT * FROM Song;
-INSERT INTO Song VALUES(22, "Slip The Noose", 243, "03/29/2019", 2, 28, 23);
-INSERT INTO Song VALUES(23, "My Best Habit", 234, "03/29/2019", 2, 28, 23);
-INSERT INTO Song VALUES(24, "Heaven, We're Already Here", 279, "03/29/2019", 2, 28, 23);
+INSERT INTO Song VALUES(22, "Slip The Noose", 243, "03/29/2019", 2, 28, 23), (23, "My Best Habit", 234, "03/29/2019", 2, 28, 23), (24, "Heaven, We're Already Here", 279, "03/29/2019", 2, 28, 23);
 
 --#5 Write a SELECT query that provides the song titles, album title, and artist name for all of the data you just entered in. Use the LEFT JOIN keyword sequence to connect the tables, and the WHERE keyword to filter the results to the album and artist you added.
 SELECT b.ArtistName, a.Title, s.Title
 FROM Song s
 LEFT JOIN Album a ON s.AlbumId = a.AlbumId
 LEFT JOIN Artist b ON b.ArtistId = s.ArtistId
-WHERE a.Title LIKE "you are okay"
-AND b.ArtistName LIKE "the maine";
+WHERE b.ArtistName LIKE "the maine";
 
 --#6 Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT a.Title, s.AlbumId, COUNT(s.SongId) AS SongId
+SELECT a.Title, COUNT(s.SongId) AS 'Song Count'
 FROM Song s
 LEFT JOIN Album a ON s.AlbumId = a.AlbumId
 GROUP BY s.AlbumId;
 
 --#7 Write a SELECT statement to display how many songs exist for each artist. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT b.ArtistName, b.ArtistId, COUNT(s.SongId) AS SongId
+SELECT b.ArtistName, COUNT(s.SongId) AS 'Song Count'
 FROM Song s 
 LEFT JOIN Artist b ON s.ArtistId = b.ArtistId
 GROUP BY s.ArtistId;
