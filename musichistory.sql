@@ -33,7 +33,7 @@ LEFT JOIN Artist b ON s.ArtistId = b.ArtistId
 GROUP BY s.ArtistId;
 
 --#8 Write a SELECT statement to display how many songs exist for each genre. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT g.Label, g.GenreId, COUNT(s.SongId) AS SongId
+SELECT g.Label, COUNT(s.SongId) AS 'Song Count'
 FROM Song s 
 LEFT JOIN Genre g ON s.GenreId = g.GenreId
 GROUP BY s.GenreId;
